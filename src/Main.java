@@ -13,6 +13,7 @@ public class Main {
     public static final String SET_PHONE      = "SP";
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
+    public static final String REPEATED_NUMBERS = "EP";
     public static final String QUIT           = "Q";
 
     //Constantes que definem as mensagens para o utilizador
@@ -52,6 +53,9 @@ public class Main {
                     break;
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
+                    break;
+                case REPEATED_NUMBERS:
+                    repeatedNumbers(cBook);
                     break;
                 default:
                     System.out.println(COMMAND_ERROR);
@@ -124,7 +128,6 @@ public class Main {
         }
         else System.out.println(NAME_NOT_EXIST);
     }
-
     private static void setEmail(Scanner in, ContactBook cBook) {
         String name;
         String email;
@@ -146,5 +149,12 @@ public class Main {
             }
         }
         else System.out.println(BOOK_EMPTY);
+    }
+
+    private static void repeatedNumbers(ContactBook cBook){
+        if(cBook.getNumberOfContacts() != 0 && cBook.hasRepeatNumbers()) {
+            System.out.println("There are contacts that share phone numbers.");
+        }
+        else System.out.println("All contacts have different phone numbers.");
     }
 }
