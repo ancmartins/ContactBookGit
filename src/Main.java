@@ -13,6 +13,7 @@ public class Main {
     public static final String SET_PHONE      = "SP";
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
+    public static final String GET_CONTACT_BY_NUMBER = "GN";
     public static final String REPEATED_NUMBERS = "EP";
     public static final String QUIT           = "Q";
 
@@ -23,6 +24,7 @@ public class Main {
     public static final String CONTACT_REMOVED = "contactBook.Contact removed.";
     public static final String CONTACT_UPDATED = "contactBook.Contact updated.";
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
+    public static final String NUMBER_NOT_EXIST = "Phone number does not exist.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
 
@@ -53,6 +55,9 @@ public class Main {
                     break;
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
+                    break;
+                case GET_CONTACT_BY_NUMBER:
+                    getContactByNumber(in, cBook);
                     break;
                 case REPEATED_NUMBERS:
                     repeatedNumbers(cBook);
@@ -149,6 +154,16 @@ public class Main {
             }
         }
         else System.out.println(BOOK_EMPTY);
+    }
+
+    private static void getContactByNumber(Scanner in, ContactBook cBook) {
+        int phone;
+        phone = in.nextInt(); in.nextLine();
+        if (cBook.getNumberOfContacts() != 0 && cBook.hasNumber(phone)) {
+            Contact c = cBook.getOldestContact(phone);
+            System.out.println(c.getName());
+        }
+        else System.out.println(NUMBER_NOT_EXIST);
     }
 
     private static void repeatedNumbers(ContactBook cBook){

@@ -18,6 +18,10 @@ public class ContactBook {
         return searchIndex(name) >= 0;
     }
 
+    public boolean hasNumber(int phone) {
+        return searchIndex(phone) >= 0;
+    }
+
     public int getNumberOfContacts() {
         return counter;
     }
@@ -69,6 +73,24 @@ public class ContactBook {
                 i++;
         if (found) result = i;
         return result;
+    }
+
+    private int searchIndex(int phone) {
+        // searches from index 0 upwards, returns first (=oldest) entry index where numbers match
+        int i = 0;
+        int result = -1;
+        boolean found = false;
+        while (i<counter && !found)
+            if (contacts[i].getPhone() == phone)
+                found = true;
+            else
+                i++;
+        if (found) result = i;
+        return result;
+    }
+
+    public Contact getOldestContact(int phone) {
+        return contacts[searchIndex(phone)];
     }
 
     private void resize() {
