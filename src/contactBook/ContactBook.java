@@ -100,22 +100,6 @@ public class ContactBook {
         contacts = tmp;
     }
 
-//    public boolean hasRepeatNumbers() {
-//        int i = 0;
-//        boolean repeated = false;
-//        while(i < counter && !repeated){
-//            int phone = contacts[i].getPhone();
-//            int j = i + 1;
-//            while(j < counter && !repeated){
-//                if(contacts[j].getPhone() == phone){
-//                    repeated = true;
-//                } else {j++;}
-//            }
-//            i++;
-//        }
-//        return repeated;
-//    }
-
     public boolean hasRepeatNumbers() {
         for(int i = 0; i < counter; i++){
             for(int j = i + 1; j < counter; j++){
